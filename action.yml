@@ -1,0 +1,31 @@
+name: 'Issue to File Sync'
+description: 'Sync GitHub issues to files with customizable paths and labels'
+author: '@KimDoubleB'
+
+inputs:
+  github-token:
+    description: 'GitHub token for API access'
+    required: true
+  output-dir:
+    description: 'Directory path for files to be created'
+    required: true
+  trigger-label:
+    description: 'Label that triggers the sync'
+    required: true
+    default: 'documentation'
+  timezone:
+    description: 'Timezone for date formatting'
+    required: false
+    default: 'Asia/Seoul'
+  file-extension:
+    description: 'File extension for output files (without dot)'
+    required: false
+    default: 'md'
+
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+
+branding:
+  icon: 'refresh-cw'
+  color: 'blue'
