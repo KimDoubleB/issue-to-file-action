@@ -47,8 +47,8 @@ def add_issue_file(event, output_dir, headers, timezone_name):
     with open(filename, 'w', encoding='utf-8') as f:
         f.write(body)
     
-    git_commit(filename, f"sync: Update issue #{issue_number} to file [{tz.zone}]")
-    add_comment(event, headers, f"🚀 Publish complete ➡️ `{filename}`")
+    git_commit(filename, f"sync: Update issue #{issue_number} to file")
+    add_comment(event, headers, f"🚀 Sync complete [`{filename}`]")
 
 def remove_issue_file(event, output_dir, headers, timezone_name):
     issue_number = event['issue']['number']
@@ -64,7 +64,7 @@ def remove_issue_file(event, output_dir, headers, timezone_name):
         git_commit(None, f"sync: Remove file for {action} issue #{issue_number}")
         
         if event['action'] != 'deleted':
-            add_comment(event, headers, f"🗑️ File has been removed 🗑️")
+            add_comment(event, headers, f"🗑️ File has been removed - Sync is over")
 
 def add_comment(event, headers, message):
     repo_full_name = event['repository']['full_name']
