@@ -78,6 +78,7 @@ def add_comment(event, headers, message):
 def git_commit(file_path, commit_message):
     os.system('git config --global user.name "github-actions[bot]"')
     os.system('git config --global user.email "github-actions[bot]@users.noreply.github.com"')
+    os.system('git config --global --add safe.directory /github/workspace')
     
     if file_path:
         os.system(f'git add "{file_path}"')
