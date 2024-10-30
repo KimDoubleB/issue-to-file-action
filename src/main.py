@@ -82,9 +82,18 @@ def git_commit(file_path, commit_message):
     
     if file_path:
         os.system(f'git add "{file_path}"')
+    else:
+        # 삭제된 파일의 경우 모든 변경사항을 스테이징
+        os.system('git add -A')
     
-    os.system(f'git commit -m "{commit_message}"')
-    os.system('git push')
+    # 변경사항이 있는지 확인
+    status = os.popen('git status --porcelain').read().strip()
+    if status:
+        # 변경사항이 있을 경우에만 커밋 및 푸시
+        os.system(f'git commit -m "{commit_message}"')
+        os.system('git push')
+    else:
+        print("No changes to commit")
 
 if __name__ == '__main__':
     main()
