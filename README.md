@@ -10,7 +10,7 @@ A GitHub Action that automatically converts GitHub issues to files using labels.
 
 ## How to Use
 
-1. Create a workflow file (.github/workflows/sync-issues.yml):
+Create a workflow file (.github/workflows/sync-issues.yml):
 
 ```yaml
 name: Sync Issues to File
