@@ -1,17 +1,16 @@
 # Issue To File Action
 
-GitHub 이슈를 파일로 자동 변환하는 GitHub Action입니다.
+A GitHub Action that automatically converts GitHub issues to files using labels.
 
-## 특징
+## Features
+- Converts issues with specific labels to files
+- Supports custom directory specification
+- Timezone setting support
+- Automatic cleanup when issues are deleted/labels are removed
 
-- 특정 라벨이 지정된 이슈를 파일로 변환
-- 커스텀 디렉토리 지정 가능
-- 타임존 설정 지원
-- 이슈 삭제/라벨 제거 시 자동 정리
+## How to Use
 
-## 사용 방법
-
-1. 워크플로우 파일 생성 (.github/workflows/sync-issues.yml):
+1. Create a workflow file (.github/workflows/sync-issues.yml):
 
 ```yaml
 name: Sync Issues to File
@@ -38,23 +37,19 @@ jobs:
           file-extension: 'md'
 ```
 
-## 입력 파라미터
+## Input Parameters
 
-| 파라미터 | 필수 | 기본값 | 설명 |
+| Parameter | Required | Default | Description |
 |----------|------|---------|------|
-| github-token | ✅ | - | GitHub 토큰 |
-| output-dir | ✅ | - | 마크다운 파일 저장 경로 |
-| trigger-label | ✅ | documentation | 변환 트리거 라벨 |
-| timezone | ❌ | Asia/Seoul | 날짜/시간 타임존 |
-| file-extension | ❌ | md | 파일 확장자 |
+| github-token | ✅ | - | Github token |
+| output-dir | ✅ | - | File save path |
+| trigger-label | ✅ | documentation | Sync trigger label |
+| timezone | ❌ | Asia/Seoul | Timezone for file name |
+| file-extension | ❌ | md | File extension |
 
-## 동작 방식
+## How it Works
 
-1. 이슈에 지정된 라벨이 추가되면 마크다운 파일 생성
-2. 파일명 형식: `YYYY-MM-DD-issue#이슈번호-이슈제목.확장자`
-3. 라벨이 제거되거나 이슈가 삭제되면 파일도 자동 삭제
-4. 작업 완료시 이슈에 자동으로 코멘트 추가
-
-## 라이선스
-
-MIT
+- Creates file when specified label is added to an issue
+- File naming format: `YYYY-MM-DD-issue#IssueNumber-IssueTitle.extension`
+- File is automatically deleted when label is removed or issue is deleted
+- Automatically adds a comment to the issue when task is completed
